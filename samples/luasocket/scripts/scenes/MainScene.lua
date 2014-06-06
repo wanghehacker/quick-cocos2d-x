@@ -38,6 +38,8 @@ function MainScene:onStatus(__event)
 	printInfo("socket status: %s", __event.name)
 end
 
+--__method 	协议号
+--__msg 	数据
 function MainScene:send2Socket(__method, __msg)
 	if not self._socket then
 		print("connect first")
@@ -45,6 +47,8 @@ function MainScene:send2Socket(__method, __msg)
 	end
 
 	local __def = Protocol.getSend(__method)
+	dump(__def)
+	dump(__msg)
 	local __buf = PacketBuffer.createPacket(__def, __msg)
 	printf("send %u packet: %s", __method, __buf:toString(16))
 	self._socket:send(__buf:getPack())
@@ -62,11 +66,17 @@ end
 
 function MainScene:onLuaSocketConnectClicked()
 	if not self._socket then
-		self._socket = cc.net.SocketTCP.new("192.168.18.18", 13000, false)
+		--在这初始化的 _socket
+		self._socket = cc.net.SocketTCP.new("127.0.0.1", 8777, false)
+		--连接
 		self._socket:addEventListener(cc.net.SocketTCP.EVENT_CONNECTED, handler(self, self.onStatus))
+		--关闭连接
 		self._socket:addEventListener(cc.net.SocketTCP.EVENT_CLOSE, handler(self,self.onStatus))
+		--关闭连接  完成
 		self._socket:addEventListener(cc.net.SocketTCP.EVENT_CLOSED, handler(self,self.onStatus))
+		--连接失败
 		self._socket:addEventListener(cc.net.SocketTCP.EVENT_CONNECT_FAILURE, handler(self,self.onStatus))
+		--传输数据
 		self._socket:addEventListener(cc.net.SocketTCP.EVENT_DATA, handler(self,self.onData))
 	end
 	self._socket:connect()
