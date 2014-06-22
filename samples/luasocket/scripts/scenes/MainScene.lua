@@ -22,7 +22,7 @@ function MainScene:ctor()
 	})
 
 	local __luaSocket1000Label = ui.newTTFLabelMenuItem({
-		text = "lua socket send 1000",
+		text = "lua socket send 1000",	
 		size = 32,
 		x = display.cx,
 		y = display.top - 64,
@@ -46,12 +46,23 @@ function MainScene:send2Socket(__method, __msg)
 		return
 	end
 
-	local __def = Protocol.getSend(__method)
-	dump(__def)
-	dump(__msg)
-	local __buf = PacketBuffer.createPacket(__def, __msg)
-	printf("send %u packet: %s", __method, __buf:toString(16))
-	self._socket:send(__buf:getPack())
+	--local __def = Protocol.getSend(__method)
+	--local __buf = PacketBuffer.createPacket(__def, __msg)
+	
+	local __bhead = cc.utils.ByteArray.new(cc.utils.ByteArray.ENDIAN_BIG)
+	local __bbody = cc.utils.ByteArray.new(cc.utils.ByteArray.ENDIAN_BIG)
+	__bbody:writeShort(60000)
+	printf("send packets ba: %s", __bbody:toString(16)2)
+	printf("send packets ba len: %s", __bbody:getLen())
+	__bhead:writeInt(__bbody:getLen())
+	printf("_baa len %s",__bhead:getLen())
+	printf("send packet baa: %s", __bhead:toString(16))
+	__bhead:writeBytes(__bbody)
+	printf("length:%s",__bbody:getLen())
+	printf("lengtha:%s",__bhead:getLen())
+	printf("send packet: %s", __bhead:toString(16))
+	__bhead:setPos(1)
+	self._socket:send(__bhead:getPack())
 end
 
 function MainScene:onData(__event)

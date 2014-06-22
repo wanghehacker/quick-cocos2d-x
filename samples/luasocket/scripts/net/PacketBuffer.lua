@@ -51,9 +51,11 @@ end
 --- metadata item description
 function PacketBuffer._createMeta(__fmt)
 	local __buf = PacketBuffer.getBaseBA()
-	__buf:writeByte(#__fmt)
+	__buf:writeByte(#__fmt) -- 长度
 	for i=1,#__fmt do
 		-- create a metadata description: data index(8~4bit 0~248(0xF8,b11111000)) + data type(3~1bit 0~7(b00000111))
+		-- bit.lshift(i-1, 3) 向左偏移3位
+		-- _DATA_TYPE[__fmt:sub(i,i)])  以此截取 格式字符串里边的字母 比如"RRR"  依次取一个R
 		__buf:writeByte( bit.bor(bit.lshift(i-1, 3), _DATA_TYPE[__fmt:sub(i,i)]) )
 	end
 	return __buf
@@ -128,6 +130,7 @@ end
 -- @param __msgDef the define of message, a table
 -- @param __msgBodyTable the message body with key&value, a table
 function PacketBuffer.createPacket(__msgDef, __msgBodyTable)
+
 	local __buf = PacketBuffer.getBaseBA()
 	local __metaBA = PacketBuffer._createMeta(__msgDef.fmt)
 	local __bodyBA = PacketBuffer._createBody(__msgDef.fmt, __msgBodyTable)
@@ -140,9 +143,9 @@ function PacketBuffer.createPacket(__msgDef, __msgBodyTable)
 		PacketBuffer.MASK1, 
 		PacketBuffer.MASK2, 
 		0,
-		__bodyLen,
-		__msgDef.method,
-		__msgDef.ver
+		__bodyLen, 			--int
+		__msgDef.method, 	--short
+		__msgDef.ver 		--byte
 		)
 	__buf:writeBytes(__metaBA)
 	__buf:writeBytes(__bodyBA)

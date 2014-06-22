@@ -25,6 +25,8 @@ function MainScene:ctor()
         end)
         :pos(display.cx, display.bottom + 100)
         :addTo(self)
+
+    
 end
 
 function MainScene:onEnter()
