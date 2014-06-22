@@ -2,8 +2,10 @@
 	网络发送
 ]]
 
+-- local PacketHelper = class("PacketHelper",require("framework.cc.utils.ByteArray"))
+local PacketHelper = class("PacketHelper",cc.util.ByteArray)
 --require("config")
-PacketHelper.ENDIAN = cc.utils.ByteArrayVarint.ENDIAN_BIG
+PacketHelper.ENDIAN = cc.util.ByteArrayVarint.ENDIAN_BIG
 
 PacketHelper.MASK1 = 0x86
 PacketHelper.MASK2 = 0x7b
@@ -16,10 +18,10 @@ PacketHelper.BODY_LEN = 4	-- length of message body, int
 PacketHelper.METHOD_LEN = 2	-- length of message method code, short
 PacketHelper.VER_LEN = 1	-- version of message, byte
 
-local PacketHelper = class("PacketHelper",import("cc.utils.ByteArray"))
+
 
 --默认构造函数
-function ByteArrayVarint:ctor()
+function PacketHelper:ctor()
 
 end
 

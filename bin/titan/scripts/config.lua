@@ -26,5 +26,5 @@ CONFIG_SCREEN_AUTOSCALE = "FIXED_WIDTH"
 
 --服务器IP和端口 程序启动时会从本地配置文件中获取
 --目前还没有本地配置文件  HOHO
-SERVER_IP = 127.0.0.1
+SERVER_IP = "127.0.0.1"
 SERVER_PORT = 8777
