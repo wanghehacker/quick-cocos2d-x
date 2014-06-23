@@ -18,12 +18,25 @@ end)
 function Cube:ctor(value)
 	-- 保存值
 	self.value = value
+
+	if self.label == nil then
+		local label = ui.ui.newTTFLabel({
+			text = tostring(value),
+			font = "Arial",
+			size = 32,
+			color = ccc3(255, 0, 0),
+			align = ui.TEXT_ALIGN_CENTER,
+			valign = ui.TEXT_ALIGN_CENTER,
+			})
+		self.label = label
+	end
+	self:addChild(self.label)
 end
 
 function Cube:setValue(value,onComplete)
 	if self.label == nil then
-		local label = ui.ui.newTTFLabel({
-			text = toString(value),
+		local label = ui.newTTFLabel({
+			text = tostring(value),
 			font = "Arial",
 			size = 32,
 			color = ccc3(255, 0, 0),
@@ -52,4 +65,7 @@ function Cube:changeValue(newValue,onComplete)
 	end
 	--
 	self:setDisplayFrame(pic)
+
+	--改变label的值
+	self.label:setString(tostring(newValue))
 end

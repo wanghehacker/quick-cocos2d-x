@@ -4,14 +4,14 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>1024.png</key>
+            <key>1024bg.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{640,960}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{640,960}}</string>
                 <key>sourceSize</key>
@@ -20,7 +20,7 @@
             <key>cube1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{906,644},{111,107}}</string>
+                <string>{{341,1623},{111,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>cube2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{793,644},{111,107}}</string>
+                <string>{{228,1623},{111,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>cube3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{680,644},{111,107}}</string>
+                <string>{{115,1623},{111,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>cube4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{567,644},{111,107}}</string>
+                <string>{{2,1623},{111,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,11 +72,11 @@
             <key>cube5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{454,644},{111,107}}</string>
+                <string>{{454,1514},{111,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{111,107}}</string>
                 <key>sourceSize</key>
@@ -85,7 +85,7 @@
             <key>cube6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{341,644},{111,107}}</string>
+                <string>{{341,1514},{111,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +98,7 @@
             <key>cube7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{228,644},{111,107}}</string>
+                <string>{{228,1514},{111,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>cube8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{115,644},{111,107}}</string>
+                <string>{{115,1514},{111,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>cube9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,644},{111,107}}</string>
+                <string>{{2,1514},{111,107}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -134,6 +134,19 @@
                 <key>sourceSize</key>
                 <string>{111,107}</string>
             </dict>
+            <key>cubebg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,964},{548,548}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{548,548}}</string>
+                <key>sourceSize</key>
+                <string>{548,548}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -142,9 +155,9 @@
             <key>realTextureFileName</key>
             <string>cube.png</string>
             <key>size</key>
-            <string>{1019,753}</string>
+            <string>{644,1732}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:01a6461c6bb727aa8d13497018bd7808:b51f7f4a72e5d4a98ef8b27f54a6f83d:38803ef6ed7e8ac351da6682c71a4ebe$</string>
+            <string>$TexturePacker:SmartUpdate:535f6f9ca717a70922fb5b989672d280:22ae166b50c15170587ddb5ea5aab177:38803ef6ed7e8ac351da6682c71a4ebe$</string>
             <key>textureFileName</key>
             <string>cube.png</string>
         </dict>

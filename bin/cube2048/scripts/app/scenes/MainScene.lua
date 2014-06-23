@@ -5,13 +5,16 @@ local MainScene = class("MainScene", function()
 end)
 
 function MainScene:ctor()
-    self.bg = display.newSprite("#1024.png",display.cx,display.cy)
+    self.bg = display.newSprite("#1024bg.png",display.cx,display.cy)
     self:addChild(self.bg)
 
+    self.cube = display.newSprite("#cubebg.png",display.cx,display.cy - 80)
+    self:addChild(self.cube)
+
     self.board = Board.new()
-    self.addChild(self.board)
-    self.addEventListener("GAME_COMPLETE", handle(self,self.GameComplete))
-    self.addEventListener("GAME_FAIL", handle(self,self.GameFail))
+    self:addChild(self.board)
+    self.board:addEventListener("GAME_COMPLETE", handler(self,self.GameComplete))
+    self.board:addEventListener("GAME_FAIL", handler(self,self.GameFail))
 end
 
 --游戏完成
