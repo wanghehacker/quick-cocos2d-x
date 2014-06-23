@@ -12,6 +12,7 @@ local Coin = class("Coin", function(nodeType)
 end)
 
 function Coin:flip(onComplete)
+    --在此取反
     local frames = display.newFrames("Coin%04d.png", 1, 8, not self.isWhite)
     local animation = display.newAnimation(frames, 0.3 / 8)
     self:playAnimationOnce(animation, false, onComplete)

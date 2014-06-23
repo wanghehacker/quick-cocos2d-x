@@ -10,7 +10,9 @@ end
 
 function MyApp:run()
     CCFileUtils:sharedFileUtils():addSearchPath("res/")
-    self:enterScene("MainScene")
+    display.addSpriteFramesWithFile(GAME_TEXTURE_DATA_FILENAME,GAME_TEXTURE_IMAGE_FILENAME)
+
+    self:enterScene("MainScene",nil,0.5,display.COLOR_WHITE)
 end
 
 return MyApp

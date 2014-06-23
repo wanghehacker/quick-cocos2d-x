@@ -1,0 +1,55 @@
+
+local TypeData = import("..data.TypeData")
+
+local Cube = class("Cube", function(value)
+	local pic = nil
+	--获取当前的背景色
+	for k,v in ipairs(TypeData) do
+		if v.value == value then
+			pic = v.bg
+			break
+		end
+	end
+	local sprite = display.newSprite(pic)
+	return sprite
+end)
+
+
+function Cube:ctor(value)
+	-- 保存值
+	self.value = value
+end
+
+function Cube:setValue(value,onComplete)
+	if self.label == nil then
+		local label = ui.ui.newTTFLabel({
+			text = toString(value),
+			font = "Arial",
+			size = 32,
+			color = ccc3(255, 0, 0),
+			align = ui.TEXT_ALIGN_CENTER,
+			valign = ui.TEXT_ALIGN_CENTER,
+			})
+		self.label = label
+	end
+	self:addChild(self.label)
+	--TODO 调整位置 	self.label.x = 
+end
+
+
+--改变值和底图
+function Cube:changeValue(newValue,onComplete)
+	--保存值
+	self.value = newValue
+	--换图
+	local pic = nil
+	--获取当前的背景色
+	for k,v in ipairs(TypeData) do
+		if v.value == newValue then
+			pic = v.bg
+			break
+		end
+	end
+	--
+	self:setDisplayFrame(pic)
+end
