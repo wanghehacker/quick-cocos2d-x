@@ -10,7 +10,7 @@ local Cube = class("Cube", function(value)
 			break
 		end
 	end
-	local sprite = display.newSprite(pic)
+	local sprite = display.newSprite("#"..pic)
 	return sprite
 end)
 
@@ -20,17 +20,18 @@ function Cube:ctor(value)
 	self.value = value
 
 	if self.label == nil then
-		local label = ui.ui.newTTFLabel({
+		local label = ui.newTTFLabel({
 			text = tostring(value),
 			font = "Arial",
-			size = 32,
-			color = ccc3(255, 0, 0),
+			size = 64,
+			color = ccc3(255, 255, 255),
 			align = ui.TEXT_ALIGN_CENTER,
 			valign = ui.TEXT_ALIGN_CENTER,
 			})
 		self.label = label
 	end
 	self:addChild(self.label)
+	self.label:setPosition(55,55)
 end
 
 function Cube:setValue(value,onComplete)
@@ -39,7 +40,7 @@ function Cube:setValue(value,onComplete)
 			text = tostring(value),
 			font = "Arial",
 			size = 32,
-			color = ccc3(255, 0, 0),
+			color = ccc3(0, 0, 0),
 			align = ui.TEXT_ALIGN_CENTER,
 			valign = ui.TEXT_ALIGN_CENTER,
 			})
@@ -69,3 +70,5 @@ function Cube:changeValue(newValue,onComplete)
 	--改变label的值
 	self.label:setString(tostring(newValue))
 end
+
+return Cube

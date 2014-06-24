@@ -51,3 +51,5 @@ TypeData[9] = {
 	bg = "cube9.png"
 }
 
+
+return TypeData

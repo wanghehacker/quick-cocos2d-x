@@ -20,132 +20,132 @@
             <key>cube1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{341,1623},{111,107}}</string>
+                <string>{{450,1516},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{111,107}}</string>
+                <string>{{0,0},{110,110}}</string>
                 <key>sourceSize</key>
-                <string>{111,107}</string>
+                <string>{110,110}</string>
             </dict>
             <key>cube2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{228,1623},{111,107}}</string>
+                <string>{{338,1628},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{111,107}}</string>
+                <string>{{0,0},{110,110}}</string>
                 <key>sourceSize</key>
-                <string>{111,107}</string>
+                <string>{110,110}</string>
             </dict>
             <key>cube3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{115,1623},{111,107}}</string>
+                <string>{{338,1516},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{111,107}}</string>
+                <string>{{0,0},{110,110}}</string>
                 <key>sourceSize</key>
-                <string>{111,107}</string>
+                <string>{110,110}</string>
             </dict>
             <key>cube4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,1623},{111,107}}</string>
+                <string>{{226,1628},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{111,107}}</string>
+                <string>{{0,0},{110,110}}</string>
                 <key>sourceSize</key>
-                <string>{111,107}</string>
+                <string>{110,110}</string>
             </dict>
             <key>cube5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{454,1514},{111,107}}</string>
+                <string>{{226,1516},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{111,107}}</string>
+                <string>{{0,0},{110,110}}</string>
                 <key>sourceSize</key>
-                <string>{111,107}</string>
+                <string>{110,110}</string>
             </dict>
             <key>cube6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{341,1514},{111,107}}</string>
+                <string>{{114,1628},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{111,107}}</string>
+                <string>{{0,0},{110,110}}</string>
                 <key>sourceSize</key>
-                <string>{111,107}</string>
+                <string>{110,110}</string>
             </dict>
             <key>cube7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{228,1514},{111,107}}</string>
+                <string>{{114,1516},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{111,107}}</string>
+                <string>{{0,0},{110,110}}</string>
                 <key>sourceSize</key>
-                <string>{111,107}</string>
+                <string>{110,110}</string>
             </dict>
             <key>cube8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{115,1514},{111,107}}</string>
+                <string>{{2,1628},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{111,107}}</string>
+                <string>{{0,0},{110,110}}</string>
                 <key>sourceSize</key>
-                <string>{111,107}</string>
+                <string>{110,110}</string>
             </dict>
             <key>cube9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,1514},{111,107}}</string>
+                <string>{{2,1516},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{111,107}}</string>
+                <string>{{0,0},{110,110}}</string>
                 <key>sourceSize</key>
-                <string>{111,107}</string>
+                <string>{110,110}</string>
             </dict>
             <key>cubebg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,964},{548,548}}</string>
+                <string>{{2,964},{550,550}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{548,548}}</string>
+                <string>{{0,0},{550,550}}</string>
                 <key>sourceSize</key>
-                <string>{548,548}</string>
+                <string>{550,550}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -155,9 +155,9 @@
             <key>realTextureFileName</key>
             <string>cube.png</string>
             <key>size</key>
-            <string>{644,1732}</string>
+            <string>{644,1740}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:535f6f9ca717a70922fb5b989672d280:22ae166b50c15170587ddb5ea5aab177:38803ef6ed7e8ac351da6682c71a4ebe$</string>
+            <string>$TexturePacker:SmartUpdate:8548b31b6ba1cbdf8e75dc79b4904c59:f8129b546d00f02302e18ebf1e830d5e:38803ef6ed7e8ac351da6682c71a4ebe$</string>
             <key>textureFileName</key>
             <string>cube.png</string>
         </dict>

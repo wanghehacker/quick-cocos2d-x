@@ -25,7 +25,7 @@ function TestSingleTouch1Scene:ctor()
         -- event.prevX, event.prevY 是触摸点之前的位置
         local label = string.format("sprite: %s x,y: %0.2f, %0.2f", event.name, event.x, event.y)
         self.sprite.label:setString(label)
-
+        -- dump(event)
         -- 返回 true 表示要响应该触摸事件，并继续接收该触摸事件的状态变化
         return true
     end)
