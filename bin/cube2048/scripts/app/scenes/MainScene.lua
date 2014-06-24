@@ -41,14 +41,16 @@ function MainScene:onEnter()
             if self.moving then
                 return
             end
+            --正在移动
             self.moving = true
+            --判断运动
             local dx = event.x - event.prevX
             local dy = event.y - event.prevY
             if math.abs(dx) > math.abs(dy) then
                 if dx > 0 then
                     --右
                     print("右")
-                    self.board:slip(3,handler(self,self.slipComplete))
+                    self.board:slip(4,handler(self,self.slipComplete))
                 else
                     --左
                     print("左")
@@ -62,7 +64,7 @@ function MainScene:onEnter()
                 else
                     --下
                     print("下")
-                    self.board:slip(4,handler(self,self.slipComplete))
+                    self.board:slip(3,handler(self,self.slipComplete))
                 end
             end
         end
