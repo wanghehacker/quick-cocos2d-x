@@ -47,7 +47,6 @@ function Cube:setValue(value,onComplete)
 		self.label = label
 	end
 	self:addChild(self.label)
-	--TODO 调整位置 	self.label.x = 
 end
 
 
@@ -65,7 +64,9 @@ function Cube:changeValue(newValue,onComplete)
 		end
 	end
 	--
-	self:setDisplayFrame(pic)
+	--print("newvalue "..newValue)
+	local frameNo = display.newSpriteFrame(pic)
+	self:setDisplayFrame(frameNo)
 
 	--改变label的值
 	self.label:setString(tostring(newValue))

@@ -39,6 +39,7 @@ function MainScene:onEnter()
         if event.name == "moved" then
             --正在移动中 不处理事件
             if self.moving then
+               -- print("正在移动中")
                 return
             end
             --正在移动
@@ -67,6 +68,8 @@ function MainScene:onEnter()
                     self.board:slip(3,handler(self,self.slipComplete))
                 end
             end
+        elseif event.name == "ended" then
+            self.moving = false
         end
         return true
     end)
@@ -75,7 +78,13 @@ end
 --滑动完成回调
 function MainScene:slipComplete()
     -- body
-    self.moving = false
+    print("不移动了")
+    --self.moving = false
+    if self.board:addOneCube() then
+        print("继续")
+    else
+        print("输了")
+    end
 end
 
 function MainScene:onExit()
