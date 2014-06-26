@@ -34,19 +34,28 @@ function MainScene:onEnter()
     self.cube:setTouchEnabled(true)
     --self.cube:setTouchMode(cc.TOUCH_MODE_ALL_AT_ONCE)
     self.cube:addNodeEventListener(cc.NODE_TOUCH_EVENT, function (event)
+        --dump(event)
         -- 触摸事件
         -- 判断方向吧少年
-        if event.name == "moved" then
+        if event.name == "began" then
+            self.bx = event.x    --触摸开始的点坐标x
+            self.by = event.y    --触摸开始的点坐标y
+            self.touchcount = 0  --触摸点的次数 
+        elseif event.name == "moved" then
             --正在移动中 不处理事件
-            if self.moving then
-               -- print("正在移动中")
-                return
+            if self.moving == true or self.touchcount ~=3 then
+                -- print("正在移动中")
+                if self.touchcount < 3 then
+                    self.touchcount = self.touchcount + 1
+                end
+                return --返回
             end
             --正在移动
             self.moving = true
+
             --判断运动
-            local dx = event.x - event.prevX
-            local dy = event.y - event.prevY
+            local dx = event.x - self.bx
+            local dy = event.y - self.by
             if math.abs(dx) > math.abs(dy) then
                 if dx > 0 then
                     --右
@@ -70,6 +79,7 @@ function MainScene:onEnter()
             end
         elseif event.name == "ended" then
             self.moving = false
+            --self.touchcount = 0
         end
         return true
     end)
@@ -79,7 +89,6 @@ end
 function MainScene:slipComplete()
     -- body
     print("不移动了")
-    --self.moving = false
     if self.board:addOneCube() then
         print("继续")
     else

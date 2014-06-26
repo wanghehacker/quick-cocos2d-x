@@ -277,6 +277,7 @@ function Board:slip(direction,onComplete)
 					self.movecount = self.movecount + 1
 					cube.x = ddx
 					cube.y = ddy
+
 					transition.moveTo(cube, {x = dddx , y = dddy,time = 0.15 , onComplete = handler(cube, self.moveComplete)})
 				end
 			end
@@ -293,6 +294,12 @@ function Board:moveComplete()
 	elseif self.moveType == 2 then 
 		--翻倍 自己翻倍  把自己移到最上层 同时移除下层的 
 		self:changeValue(self.value*2)
+		local sequence = transition.sequence({
+						CCScaleTo:create(0.05, 1.1),
+						CCScaleTo:create(0.05, 1.0),
+						})
+		self:runAction(sequence)
+
 		self.target:removeFromParent()
 		--从数组中删除
 		for i,v in ipairs(self.board.cubes) do
