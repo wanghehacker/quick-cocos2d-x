@@ -24,6 +24,10 @@ end
 --随机刷两个cube出来
 --随机选2 或4 ，如果是2则两个都是2，如果是4则两个都是4
 function Board:start()
+
+	--self:addCube(256, 1, 1)
+	--self:addCube(256, 1, 2)
+
 	math.randomseed(os.time())
 	local rand = math.random(2)
 	local value = 2
@@ -59,6 +63,7 @@ function Board:start()
 end
 
 function Board:addOneCube()
+
 	math.randomseed(os.time())
 	local rand = math.random(2)
 	local value = 2

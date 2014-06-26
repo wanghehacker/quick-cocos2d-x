@@ -47,9 +47,24 @@ TypeData[8] = {
 }
 
 TypeData[9] = {
+	value = 512,
+	bg = "cube9.png"
+}
+
+
+TypeData[10] = {
 	value = 1024,
 	bg = "cube9.png"
 }
 
+TypeData[11] = {
+	value = 2048,
+	bg = "cube9.png"
+}
+
+TypeData[12] = {
+	value = 8192,
+	bg = "cube9.png"
+}
 
 return TypeData
