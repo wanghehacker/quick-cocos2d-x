@@ -14,38 +14,58 @@ local Cube = class("Cube", function(value)
 	return sprite
 end)
 
-
 function Cube:ctor(value)
 	-- 保存值
 	self.value = value
-
+	--[[
+	if self.label == nil then
+		self.label = ui.newBMFontLabel({
+			text = tostring(value),
+			--font = "lcd.fnt"
+			font = "lcd.fnt"
+			})
+	end
+	]]
+	
 	if self.label == nil then
 		local label = ui.newTTFLabel({
 			text = tostring(value),
-			font = "Arial",
-			size = 64,
+			font = "myxihei.ttf",
+			size = 52,
 			color = ccc3(255, 255, 255),
 			align = ui.TEXT_ALIGN_CENTER,
 			valign = ui.TEXT_ALIGN_CENTER,
 			})
 		self.label = label
 	end
+	
+	self.label:setColor(ccc3(37,37,37))
 	self:addChild(self.label)
 	self.label:setPosition(55,55)
 end
 
 function Cube:setValue(value,onComplete)
+	--[[
+	if self.label == nil then
+		self.label = ui.newBMFontLabel({
+			text = tostring(value),
+			font = "lcd.fnt"
+			})
+	end
+	]]
+	
 	if self.label == nil then
 		local label = ui.newTTFLabel({
 			text = tostring(value),
-			font = "Arial",
-			size = 32,
-			color = ccc3(0, 0, 0),
+			font = "myxihei.ttf",
+			size = 52,
+			color = ccc3(255, 255, 255),
 			align = ui.TEXT_ALIGN_CENTER,
 			valign = ui.TEXT_ALIGN_CENTER,
 			})
 		self.label = label
 	end
+
 	self:addChild(self.label)
 end
 
@@ -71,5 +91,5 @@ function Cube:changeValue(newValue,onComplete)
 	--改变label的值
 	self.label:setString(tostring(newValue))
 end
-
+	
 return Cube

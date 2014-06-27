@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.3.4</string>
         <key>fileName</key>
-        <string>F:/cocos2d/quickcocos2dx/quick-cocos2d-x/bin/cube2048/psd/plist/cube.tps</string>
+        <string>E:/quickx/quick-cocos2d-x/bin/cube2048/psd/plist/cube.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -172,17 +172,21 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../新建文件夹/1024bg.png</filename>
-            <filename>../新建文件夹/cube1.png</filename>
-            <filename>../新建文件夹/cube2.png</filename>
-            <filename>../新建文件夹/cube3.png</filename>
-            <filename>../新建文件夹/cube4.png</filename>
-            <filename>../新建文件夹/cube5.png</filename>
-            <filename>../新建文件夹/cube6.png</filename>
-            <filename>../新建文件夹/cube7.png</filename>
-            <filename>../新建文件夹/cube8.png</filename>
-            <filename>../新建文件夹/cube9.png</filename>
-            <filename>../新建文件夹/cubebg.png</filename>
+            <filename>../新图/1024bg.png</filename>
+            <filename>../新图/cube1.png</filename>
+            <filename>../新图/cube2.png</filename>
+            <filename>../新图/cube3.png</filename>
+            <filename>../新图/cube4.png</filename>
+            <filename>../新图/cube5.png</filename>
+            <filename>../新图/cube6.png</filename>
+            <filename>../新图/cube7.png</filename>
+            <filename>../新图/cube8.png</filename>
+            <filename>../新图/cube9.png</filename>
+            <filename>../新图/cube10.png</filename>
+            <filename>../新图/cube11.png</filename>
+            <filename>../新图/cube12.png</filename>
+            <filename>../新图/cubebg.png</filename>
+            <filename>../新图/fbg.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

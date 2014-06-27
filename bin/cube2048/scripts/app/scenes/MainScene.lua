@@ -1,21 +1,30 @@
 local Board = import("..view.Board")	--方块容器
-
+local TitleBar = import("..view.TitleBar")
 local MainScene = class("MainScene", function()
     return display.newScene("MainScene")
 end)
 
 function MainScene:ctor()
-    self.bg = display.newSprite("#1024bg.png",display.cx,display.cy)
+    self.bg = display.newScale9Sprite("#1024bg.png",5,5,cc.size(1,1))
+    self.bg:setContentSize(cc.size(display.widthInPixels,display.heightInPixels))
+    self.bg:setPosition(display.cx,display.cy)
     self:addChild(self.bg)
 
+    --标题 分值面板
+    self.title = TitleBar.new()
+    self:addChild(self.title)
+    self.title:setPosition(display.cx - 275,display.top - 200)
+
+    --格子背景
     self.cube = display.newSprite("#cubebg.png",display.cx,display.cy - 80)
     self:addChild(self.cube)
-
+    --
     self.board = Board.new()
     self:addChild(self.board)
     self.board:setPosition(display.cx - 275,display.cy - 80 - 275)
-    self.board:addEventListener("GAME_COMPLETE", handler(self,self.GameComplete))
-    self.board:addEventListener("GAME_FAIL", handler(self,self.GameFail))
+    self.board:addEventListener("GAME_COMPLETE", handler(self,self.GameComplete))   --游戏胜利
+    self.board:addEventListener("GAME_FAIL", handler(self,self.GameFail))           --游戏失败
+    self.board:addEventListener("GAME_ADD_SCORE", handler(self,self.addScore))      --游戏加分
     --正在移动的标志 在移动中 不处理鼠标事件上
     self.moving = false
 end
@@ -59,21 +68,21 @@ function MainScene:onEnter()
             if math.abs(dx) > math.abs(dy) then
                 if dx > 0 then
                     --右
-                    print("右")
+                    --print("右")
                     self.board:slip(4,handler(self,self.slipComplete))
                 else
                     --左
-                    print("左")
+                    --print("左")
                     self.board:slip(2,handler(self,self.slipComplete))
                 end
             else
                 if dy>0 then
                     --上
-                    print("上")
+                    --print("上")
                     self.board:slip(1,handler(self,self.slipComplete))
                 else
                     --下
-                    print("下")
+                    --print("下")
                     self.board:slip(3,handler(self,self.slipComplete))
                 end
             end
@@ -85,12 +94,18 @@ function MainScene:onEnter()
     end)
 end
 
+--游戏加分
+function MainScene:addScore()
+
+end
+
+
 --滑动完成回调
 function MainScene:slipComplete()
     -- body
-    print("不移动了")
+    --print("不移动了")
     if self.board:addOneCube() then
-        print("继续")
+        --print("继续")
     else
         print("输了")
     end

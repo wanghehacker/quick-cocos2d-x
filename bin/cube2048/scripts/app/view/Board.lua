@@ -7,9 +7,11 @@ end)
 --构造
 function Board:ctor()
 	cc.GameObject.extend(self):addComponent("components.behavior.EventProtocol"):exportMethods()
-	self.batch = display.newBatchNode(GAME_TEXTURE_IMAGE_FILENAME)
-	self.batch:setPosition(display.cx, display.cy)
-    self:addChild(self.batch)
+
+	--display.addSpriteFramesWithFile(GAME_TEXTURE_DATA_FILENAME, GAME_TEXTURE_IMAGE_FILENAME)
+	--self.batch = display.newBatchNode(GAME_TEXTURE_IMAGE_FILENAME)
+	--self.batch:setPosition(display.cx, display.cy)
+    --self:addChild(self.batch)
     --数组长度
     self.cubes = {}
     self.cubepos = {}
@@ -24,10 +26,8 @@ end
 --随机刷两个cube出来
 --随机选2 或4 ，如果是2则两个都是2，如果是4则两个都是4
 function Board:start()
-
-	--self:addCube(256, 1, 1)
-	--self:addCube(256, 1, 2)
-
+	--self:addCube(2048, 1, 1)
+	--self:addCube(1024, 1, 2)
 	math.randomseed(os.time())
 	local rand = math.random(2)
 	local value = 2
@@ -189,7 +189,7 @@ function Board:slip(direction,onComplete)
 		loopStart = 4
 		loopEnd   = 1
 	end
-	print("direction"..direction)
+	--print("direction"..direction)
 	-- print(loopStart)
 	-- print(loopEnd)
 	-- print(step)
@@ -318,7 +318,7 @@ function Board:moveComplete()
 	--完成回调
 	if self.board.movecount == 0 then
 		--去重复
-		print("完成回调")
+		--print("完成回调")
 		self.board.complete()
 		--dump(self.board.cubes)
 		--dump(self.board.cubepos)
