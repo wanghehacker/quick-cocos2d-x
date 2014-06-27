@@ -84,7 +84,7 @@ function Cube:changeValue(newValue,onComplete)
 		end
 	end
 	--
-	print("newvalue "..newValue)
+	--print("newvalue "..newValue)
 	local frameNo = display.newSpriteFrame(pic)
 	self:setDisplayFrame(frameNo)
 

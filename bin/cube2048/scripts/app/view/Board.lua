@@ -1,3 +1,4 @@
+local TypeData = import("..data.TypeData")
 local Cube = import("..view.Cube")
 --所有格子的容器
 local Board = class("Board", function ()
@@ -153,7 +154,11 @@ end
 --onComplete 结束回调函数
 
 function Board:slip(direction,onComplete)
+	if self.movecount ~= 0 then 
+		return 
+	end
 	self.complete = onComplete
+	self.score = 0
 	-- 先计算能重合的块
 	--onComplete() 运动完成后调用
 	--整个坐标如下
@@ -282,6 +287,7 @@ function Board:slip(direction,onComplete)
 					self.movecount = self.movecount + 1
 					cube.x = ddx
 					cube.y = ddy
+					cube.moving = true
 
 					transition.moveTo(cube, {x = dddx , y = dddy,time = 0.15 , onComplete = handler(cube, self.moveComplete)})
 				end
@@ -292,10 +298,11 @@ end
 
 --移动完成回调
 function Board:moveComplete()
+	self.moving = false
 	self.board.movecount = self.board.movecount - 1 
-	--print("self.moveType" .. self.moveType)
 	if self.moveType == 1 then
 		--仅仅移动  不做处理
+		
 	elseif self.moveType == 2 then 
 		--翻倍 自己翻倍  把自己移到最上层 同时移除下层的 
 		self:changeValue(self.value*2)
@@ -305,6 +312,10 @@ function Board:moveComplete()
 						})
 		self:runAction(sequence)
 
+		if self.target.moving then
+			self.board.movecount = self.board.movecount - 1 	
+			self.target.moving = false
+		end
 		self.target:removeFromParent()
 		--从数组中删除
 		for i,v in ipairs(self.board.cubes) do
@@ -313,18 +324,21 @@ function Board:moveComplete()
 				break
 			end
 		end
-		--self.target = nil
+
+		--加分
+		self.board.score = self.board.score + self.value
 	end
 	--完成回调
 	if self.board.movecount == 0 then
+		--发事件出去
+		if self.board.score == TypeData.MAX_VALUE then 
+			self.board:dispatchEvent({name = "GAME_COMPLETE"})
+		else
+			self.board:dispatchEvent({name = "GAME_ADD_SCORE",score = self.board.score})
+		end
 		--去重复
 		--print("完成回调")
 		self.board.complete()
-		--dump(self.board.cubes)
-		--dump(self.board.cubepos)
-		--for i,v in pairs(self.board.cubes) do
-		--	print("cube x"..v.x .." cube y"..v.y)
-		--end
 	end
 end
 return Board

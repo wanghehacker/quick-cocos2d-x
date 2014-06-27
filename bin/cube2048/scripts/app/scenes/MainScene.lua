@@ -27,6 +27,9 @@ function MainScene:ctor()
     self.board:addEventListener("GAME_ADD_SCORE", handler(self,self.addScore))      --游戏加分
     --正在移动的标志 在移动中 不处理鼠标事件上
     self.moving = false
+    --当前分值 最高分
+    self.score = 0
+    self.best = 65535
 end
 
 --游戏完成
@@ -39,7 +42,7 @@ function MainScene:GameFail()
 end
 --开始游戏了
 function MainScene:onEnter()
-	self.board:start()
+    self:gameStart()
     self.cube:setTouchEnabled(true)
     --self.cube:setTouchMode(cc.TOUCH_MODE_ALL_AT_ONCE)
     self.cube:addNodeEventListener(cc.NODE_TOUCH_EVENT, function (event)
@@ -68,21 +71,21 @@ function MainScene:onEnter()
             if math.abs(dx) > math.abs(dy) then
                 if dx > 0 then
                     --右
-                    --print("右")
+                    print("右")
                     self.board:slip(4,handler(self,self.slipComplete))
                 else
                     --左
-                    --print("左")
+                    print("左")
                     self.board:slip(2,handler(self,self.slipComplete))
                 end
             else
                 if dy>0 then
                     --上
-                    --print("上")
+                    print("上")
                     self.board:slip(1,handler(self,self.slipComplete))
                 else
                     --下
-                    --print("下")
+                    print("下")
                     self.board:slip(3,handler(self,self.slipComplete))
                 end
             end
@@ -94,18 +97,37 @@ function MainScene:onEnter()
     end)
 end
 
---游戏加分
-function MainScene:addScore()
 
+function MainScene:gameStart()
+    local best = CCUserDefault:sharedUserDefault():getIntegerForKey("bestscore")
+    if best == nil then 
+        best = 0
+        CCUserDefault:sharedUserDefault():setIntegerForKey("bestscore", 0)
+    end
+    --初始化分数
+    self.score = 0
+    self.best = best
+    self.board:start()
+end
+
+
+--游戏加分
+function MainScene:addScore(event)
+    self.score = self.score + tonumber(event.score)
+    self.title:setScore(self.score)
+
+    if self.score > self.best then
+        CCUserDefault:sharedUserDefault():setIntegerForKey("bestscore", self.score)
+        self.title:setBestScore(self.score)
+    end
 end
 
 
 --滑动完成回调
 function MainScene:slipComplete()
     -- body
-    --print("不移动了")
     if self.board:addOneCube() then
-        --print("继续")
+        print("继续")
     else
         print("输了")
     end
