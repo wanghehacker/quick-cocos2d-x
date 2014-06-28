@@ -83,11 +83,10 @@ function Cube:changeValue(newValue,onComplete)
 			break
 		end
 	end
-	--
+	
 	--print("newvalue "..newValue)
 	local frameNo = display.newSpriteFrame(pic)
 	self:setDisplayFrame(frameNo)
-
 	--改变label的值
 	self.label:setString(tostring(newValue))
 end

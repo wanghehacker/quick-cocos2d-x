@@ -7,7 +7,7 @@
             <key>1024bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{450,640},{10,10}}</string>
+                <string>{{498,640},{10,10}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -16,6 +16,19 @@
                 <string>{{0,0},{10,10}}</string>
                 <key>sourceSize</key>
                 <string>{10,10}</string>
+            </dict>
+            <key>alertbg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{450,640},{46,37}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{46,37}}</string>
+                <key>sourceSize</key>
+                <string>{46,37}</string>
             </dict>
             <key>cube1.png</key>
             <dict>
@@ -33,7 +46,7 @@
             <key>cube10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{338,666},{110,110}}</string>
+                <string>{{226,778},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +59,7 @@
             <key>cube11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{226,778},{110,110}}</string>
+                <string>{{338,666},{110,110}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -209,7 +222,7 @@
             <key>size</key>
             <string>{554,890}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:5e1b2dab2a8e672381fd7ccc5ca6675f:7d1bfee457904c5122d2c06d73dca38b:38803ef6ed7e8ac351da6682c71a4ebe$</string>
+            <string>$TexturePacker:SmartUpdate:17885e619c7a7746978b6abfdf0e7b45:67080c68728750f3779a8c389b5ccdab:38803ef6ed7e8ac351da6682c71a4ebe$</string>
             <key>textureFileName</key>
             <string>cube.png</string>
         </dict>

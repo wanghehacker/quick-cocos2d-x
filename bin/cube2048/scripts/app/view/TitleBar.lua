@@ -9,6 +9,7 @@ local TitleBar = class("TitleBar", function ()
 end)
 
 function TitleBar:ctor()
+	cc.GameObject.extend(self):addComponent("components.behavior.EventProtocol"):exportMethods()
 	--标题 2048 
 	--[[
 	if self.title == nil then
@@ -45,7 +46,7 @@ function TitleBar:ctor()
 	self:addChild(f9bg2)
 
 
-	--score label
+	--score title
 	if self.scoretitle == nil then
 		self.scoretitle = ui.newTTFLabel({
 			text = "score",
@@ -59,7 +60,7 @@ function TitleBar:ctor()
 	self.scoretitle:setColor(ccc3(37,37,37))
 	self.scoretitle:setPosition(ccp(330,92))
 	self:addChild(self.scoretitle)
-
+	--score
 	if self.score == nil then
 		self.score = ui.newTTFLabel({
 			text = "0",
@@ -74,7 +75,7 @@ function TitleBar:ctor()
 	self.score:setPosition(ccp(330,48))
 	self:addChild(self.score)
 
-	--best 
+	--best title
 	if self.besttitle == nil then
 		self.besttitle = ui.newTTFLabel({
 			text = "best",
@@ -88,13 +89,13 @@ function TitleBar:ctor()
 	self.besttitle:setColor(ccc3(37,37,37))
 	self.besttitle:setPosition(ccp(480,92))
 	self:addChild(self.besttitle)
-
+	--best
 	if self.best == nil then
 		self.best = ui.newTTFLabel({
 			text = "0",
 			font = "myxihei.ttf",
 			size = 30,
-			color = ccc3(255, 255, 255),
+			color = ccc3(37, 37, 37),
 			align = ui.TEXT_ALIGN_CENTER,
 			valign = ui.TEXT_ALIGN_CENTER,
 			})
@@ -102,7 +103,25 @@ function TitleBar:ctor()
 	self.best:setColor(ccc3(37,37,37))
 	self.best:setPosition(ccp(480,48))
 	self:addChild(self.best)
+
+	--RESTART
+	self.restart = ui.newMenu({
+		ui.newTTFLabelMenuItem({
+		text = "RESTART",
+		font = "myxihei.ttf",
+		size = 30,
+		color = ccc3(37,37,37),
+		listener = handler(self,self.reStart)
+		}):pos(60,-40)
+	}):addTo(self)
+
 end
+
+--重新开始
+function TitleBar:reStart()
+	self:dispatchEvent({name = "GAME_RESTART"})
+end
+
 
 --设置分数
 function TitleBar:setScore(score)
@@ -111,6 +130,7 @@ end
 
 --设置最好成绩
 function TitleBar:setBestScore(score)
+	print("set best score"..score)
 	self.best:setString(tostring(score))
 end
 

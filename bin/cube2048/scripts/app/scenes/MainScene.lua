@@ -1,12 +1,13 @@
 local Board = import("..view.Board")	--方块容器
 local TitleBar = import("..view.TitleBar")
+local GameAlert = import("..ui.GameAlert")
 local MainScene = class("MainScene", function()
     return display.newScene("MainScene")
 end)
 
 function MainScene:ctor()
     self.bg = display.newScale9Sprite("#1024bg.png",5,5,cc.size(1,1))
-    self.bg:setContentSize(cc.size(display.widthInPixels,display.heightInPixels))
+    self.bg:setContentSize(cc.size(display.width,display.height))
     self.bg:setPosition(display.cx,display.cy)
     self:addChild(self.bg)
 
@@ -14,7 +15,7 @@ function MainScene:ctor()
     self.title = TitleBar.new()
     self:addChild(self.title)
     self.title:setPosition(display.cx - 275,display.top - 200)
-
+    self.title:addEventListener("GAME_RESTART", handler(self,self.reStart))
     --格子背景
     self.cube = display.newSprite("#cubebg.png",display.cx,display.cy - 80)
     self:addChild(self.cube)
@@ -32,13 +33,43 @@ function MainScene:ctor()
     self.best = 65535
 end
 
+--游戏重新开始
+function MainScene:reStart()
+    self:showRestartAlert("Restart Game?",{
+            {
+                name = "Restart",
+                handle = handler(self,self.gameStart)
+            },
+            {
+                name = "Cancel",
+                handle = handler(self,function() 
+                    self.alert:removeFromParent()
+                    self.cube:setTouchEnabled(true)
+                    end)
+            },
+        })
+end
+
 --游戏完成
 function MainScene:GameComplete()
-
+     --失败 弹出alert
+    self:showRestartAlert("Win!",{
+            {
+                name = "Continue",
+                handle = handler(self,self.gameStart)
+            }
+        })
 end
 
 --游戏结束
 function MainScene:GameFail()
+    --失败 弹出alert
+    self:showRestartAlert("Game Over!",{
+            {
+                name = "Retry",
+                handle = handler(self,self.gameStart)
+            }
+        })
 end
 --开始游戏了
 function MainScene:onEnter()
@@ -97,31 +128,36 @@ function MainScene:onEnter()
     end)
 end
 
-
 function MainScene:gameStart()
     local best = CCUserDefault:sharedUserDefault():getIntegerForKey("bestscore")
     if best == nil then 
         best = 0
         CCUserDefault:sharedUserDefault():setIntegerForKey("bestscore", 0)
     end
+    -- 
+    if self.alert ~= nil then 
+        self.alert:removeFromParent()
+        self.alert = nil
+    end
     --初始化分数
+    self.cube:setTouchEnabled(true)
     self.score = 0
     self.best = best
+    self.title:setScore(0)
+    self.title:setBestScore(self.best)
     self.board:start()
-end
 
+end
 
 --游戏加分
 function MainScene:addScore(event)
     self.score = self.score + tonumber(event.score)
     self.title:setScore(self.score)
-
     if self.score > self.best then
         CCUserDefault:sharedUserDefault():setIntegerForKey("bestscore", self.score)
         self.title:setBestScore(self.score)
     end
 end
-
 
 --滑动完成回调
 function MainScene:slipComplete()
@@ -131,6 +167,17 @@ function MainScene:slipComplete()
     else
         print("输了")
     end
+end
+
+--显示Alert
+function MainScene:showRestartAlert(content,buttons)
+    self.alert = GameAlert.new()
+    self.alert:show(content, buttons)
+    self.alert:addTo(self)
+    self.alert:setPosition(ccp(display.cx,display.cy - 60))
+    self.alert:setOpacity(-129)
+    --print("self.board:getOpacity() "..self.board:getOpacity())
+    self.cube:setTouchEnabled(false)
 end
 
 function MainScene:onExit()

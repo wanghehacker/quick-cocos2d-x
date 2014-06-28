@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>3.3.4</string>
         <key>fileName</key>
-        <string>E:/quickx/quick-cocos2d-x/bin/cube2048/psd/plist/cube.tps</string>
+        <string>F:/cocos2d/quickcocos2dx/quick-cocos2d-x/bin/cube2048/psd/plist/cube.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -187,6 +187,7 @@
             <filename>../新图/cube12.png</filename>
             <filename>../新图/cubebg.png</filename>
             <filename>../新图/fbg.png</filename>
+            <filename>../新图/alertbg.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

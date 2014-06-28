@@ -14,19 +14,26 @@ function Board:ctor()
 	--self.batch:setPosition(display.cx, display.cy)
     --self:addChild(self.batch)
     --数组长度
-    self.cubes = {}
-    self.cubepos = {}
-    self.cubepos[1] = {0,0,0,0}
-    self.cubepos[2] = {0,0,0,0}
-    self.cubepos[3] = {0,0,0,0}
-    self.cubepos[4] = {0,0,0,0}
-    self.movecount = 0
+
 end
 
 --刷新一下界面
 --随机刷两个cube出来
 --随机选2 或4 ，如果是2则两个都是2，如果是4则两个都是4
 function Board:start()
+	if self.cubes ~= nil then 
+		for k,v in pairs(self.cubes) do
+			v:removeFromParent()
+		end
+	end
+
+	self.cubes = {}
+    self.cubepos = {}
+    self.cubepos[1] = {0,0,0,0}
+    self.cubepos[2] = {0,0,0,0}
+    self.cubepos[3] = {0,0,0,0}
+    self.cubepos[4] = {0,0,0,0}
+    self.movecount = 0
 	--self:addCube(2048, 1, 1)
 	--self:addCube(1024, 1, 2)
 	math.randomseed(os.time())
@@ -293,6 +300,10 @@ function Board:slip(direction,onComplete)
 				end
 			end
 		end
+	end
+	--计算结束
+	if self.movecount == 0 and #self.cubes ==16 then
+		self:dispatchEvent({name="GAME_FAIL"})
 	end
 end
 
