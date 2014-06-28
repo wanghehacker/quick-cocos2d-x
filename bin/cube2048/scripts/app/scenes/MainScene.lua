@@ -14,7 +14,7 @@ function MainScene:ctor()
     --标题 分值面板
     self.title = TitleBar.new()
     self:addChild(self.title)
-    self.title:setPosition(display.cx - 275,display.top - 200)
+    self.title:setPosition(display.cx - 275,display.top - 160)
     self.title:addEventListener("GAME_RESTART", handler(self,self.reStart))
     --格子背景
     self.cube = display.newSprite("#cubebg.png",display.cx,display.cy - 80)
@@ -52,13 +52,16 @@ end
 
 --游戏完成
 function MainScene:GameComplete()
-     --失败 弹出alert
+     --胜利 弹出alert
     self:showRestartAlert("Win!",{
             {
                 name = "Continue",
                 handle = handler(self,self.gameStart)
             }
         })
+
+    cc.analytics:doCommand{command = "event",
+                    args = {eventId = "win"}}
 end
 
 --游戏结束
@@ -70,6 +73,9 @@ function MainScene:GameFail()
                 handle = handler(self,self.gameStart)
             }
         })
+
+    cc.analytics:doCommand{command = "event",
+                   args = {eventId = "lose"}}
 end
 --开始游戏了
 function MainScene:onEnter()
@@ -129,6 +135,10 @@ function MainScene:onEnter()
 end
 
 function MainScene:gameStart()
+
+    cc.analytics:doCommand{command = "event",
+                   args = {eventId = "start"}}
+
     local best = CCUserDefault:sharedUserDefault():getIntegerForKey("bestscore")
     if best == nil then 
         best = 0

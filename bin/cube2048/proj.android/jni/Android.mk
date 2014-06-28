@@ -7,7 +7,11 @@ LOCAL_MODULE := game_shared
 LOCAL_MODULE_FILENAME := libgame
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
-    ../../sources/AppDelegate.cpp
+    ../../sources/AppDelegate.cpp \
+    ../../sources/MobClickCppForLua_luabinding.cpp \
+    ../../sources/MobClickCppForLua.cpp
+
+LOCAL_LDLIBS := $(LOCAL_PATH)/../libs/cocos2dx2_libMobClickCpp.a
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../sources
 

@@ -6,9 +6,13 @@
 #include "CCLuaEngine.h"
 #include <string>
 
+#include "MobClickCppForLua_luabinding.h"
+#include "MobclickCpp.h"    //for umeng analytics
 using namespace std;
 using namespace cocos2d;
 using namespace CocosDenshion;
+
+
 
 AppDelegate::AppDelegate()
 {
@@ -37,6 +41,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
 
     CCLuaStack *pStack = pEngine->getLuaStack();
+    
+    //for umeng analytics
+    luaopen_MobClickCppForLua_luabinding(pStack->getLuaState());
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     // load framework

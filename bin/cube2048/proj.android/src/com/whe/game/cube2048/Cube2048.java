@@ -25,6 +25,7 @@ package com.whe.game.cube2048;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 
 public class Cube2048 extends Cocos2dxActivity {
@@ -32,9 +33,16 @@ public class Cube2048 extends Cocos2dxActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		STATIC_REF = this;
 	}
 
     static {
     	System.loadLibrary("game");
     }
+    
+    public static Context getContext(){
+        return STATIC_REF;
+    }
+    
+    public static Context STATIC_REF = null;
 }
