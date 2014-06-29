@@ -1,6 +1,8 @@
 local Board = import("..view.Board")	--方块容器
 local TitleBar = import("..view.TitleBar")
 local GameAlert = import("..ui.GameAlert")
+local Hlog = import("..utils.Hlog")
+
 local MainScene = class("MainScene", function()
     return display.newScene("MainScene")
 end)
@@ -59,9 +61,7 @@ function MainScene:GameComplete()
                 handle = handler(self,self.gameStart)
             }
         })
-
-    cc.analytics:doCommand{command = "event",
-                    args = {eventId = "win"}}
+    Hlog.logevent("win")
 end
 
 --游戏结束
@@ -73,14 +73,37 @@ function MainScene:GameFail()
                 handle = handler(self,self.gameStart)
             }
         })
-
-    cc.analytics:doCommand{command = "event",
-                   args = {eventId = "lose"}}
+    Hlog.logevent("lose")
 end
 --开始游戏了
 function MainScene:onEnter()
     self:gameStart()
+
     self.cube:setTouchEnabled(true)
+    self.board:setKeypadEnabled(true)
+    self.board:addNodeEventListener(cc.KEYPAD_EVENT,function(event)
+        if event.key == "back" then
+            --返回按钮
+            self:showRestartAlert("Exit Game?",{
+            {
+                name = "Yes",
+                handle = handler(self,function() 
+                    require("app.MyApp"):exit()
+                    end)
+
+                -- require("app.MyApp")
+            },
+            {
+                name = "Cancel",
+                handle = handler(self,function() 
+                    self.alert:removeFromParent()
+                    self.cube:setTouchEnabled(true)
+                    end)
+            },
+        })
+        end
+        end)
+
     --self.cube:setTouchMode(cc.TOUCH_MODE_ALL_AT_ONCE)
     self.cube:addNodeEventListener(cc.NODE_TOUCH_EVENT, function (event)
         --dump(event)
@@ -136,9 +159,7 @@ end
 
 function MainScene:gameStart()
 
-    cc.analytics:doCommand{command = "event",
-                   args = {eventId = "start"}}
-
+    Hlog.logevent("start")
     local best = CCUserDefault:sharedUserDefault():getIntegerForKey("bestscore")
     if best == nil then 
         best = 0
@@ -191,7 +212,8 @@ function MainScene:showRestartAlert(content,buttons)
 end
 
 function MainScene:onExit()
-    
+    self.cube:removeNodeEventListenersByEvent(cc.NODE_TOUCH_EVENT)
+    self.board:removeNodeEventListenersByEvent(cc.KEYPAD_EVENT)
 end
 
 return MainScene

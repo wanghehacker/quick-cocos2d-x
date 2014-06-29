@@ -8,19 +8,20 @@ end)
 --构造
 function Board:ctor()
 	cc.GameObject.extend(self):addComponent("components.behavior.EventProtocol"):exportMethods()
-
 	--display.addSpriteFramesWithFile(GAME_TEXTURE_DATA_FILENAME, GAME_TEXTURE_IMAGE_FILENAME)
 	--self.batch = display.newBatchNode(GAME_TEXTURE_IMAGE_FILENAME)
 	--self.batch:setPosition(display.cx, display.cy)
     --self:addChild(self.batch)
     --数组长度
-
 end
 
 --刷新一下界面
 --随机刷两个cube出来
 --随机选2 或4 ，如果是2则两个都是2，如果是4则两个都是4
 function Board:start()
+
+	self:setKeypadEnabled(value)
+
 	if self.cubes ~= nil then 
 		for k,v in pairs(self.cubes) do
 			v:removeFromParent()
@@ -138,6 +139,12 @@ function Board:addCube(value,posx,posy)
 	cube:setPosition(x,y)
 	cube.board = self
 	self:addChild(cube)
+	cube:setScale(0.1)
+	local sequence = transition.sequence({
+						CCScaleTo:create(0.1, 1.0)
+						})
+	cube:runAction(sequence)
+
 	--保存起来
 	table.insert(self.cubes, cube)
 	--用二维数组存储
@@ -296,7 +303,7 @@ function Board:slip(direction,onComplete)
 					cube.y = ddy
 					cube.moving = true
 
-					transition.moveTo(cube, {x = dddx , y = dddy,time = 0.15 , onComplete = handler(cube, self.moveComplete)})
+					transition.moveTo(cube, {x = dddx , y = dddy,time = 0.1 , onComplete = handler(cube, self.moveComplete)})
 				end
 			end
 		end
@@ -318,8 +325,8 @@ function Board:moveComplete()
 		--翻倍 自己翻倍  把自己移到最上层 同时移除下层的 
 		self:changeValue(self.value*2)
 		local sequence = transition.sequence({
-						CCScaleTo:create(0.05, 1.1),
-						CCScaleTo:create(0.05, 1.0),
+						CCScaleTo:create(0.08, 1.2),
+						CCScaleTo:create(0.08, 1.0),
 						})
 		self:runAction(sequence)
 
