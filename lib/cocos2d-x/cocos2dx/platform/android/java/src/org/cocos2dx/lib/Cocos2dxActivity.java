@@ -25,6 +25,7 @@ package org.cocos2dx.lib;
 
 import org.cocos2dx.lib.Cocos2dxHelper.Cocos2dxHelperListener;
 
+import android.R;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
@@ -62,7 +63,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
 		super.onCreate(savedInstanceState);
 		sContext = this;
     	this.mHandler = new Cocos2dxHandler(this);
-
+    	
     	this.init();
 
 		Cocos2dxHelper.init(this, this);

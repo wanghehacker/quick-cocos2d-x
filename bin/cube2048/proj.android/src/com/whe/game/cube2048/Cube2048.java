@@ -25,15 +25,29 @@ package com.whe.game.cube2048;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+
+
 import android.content.Context;
 import android.os.Bundle;
 
-public class Cube2048 extends Cocos2dxActivity {
+import android.view.Gravity;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 
+
+
+public class Cube2048 extends Cocos2dxActivity {
+	
+	private AdView adView =null;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		STATIC_REF = this;
+		setupAds();
 	}
 
     static {
@@ -45,4 +59,43 @@ public class Cube2048 extends Cocos2dxActivity {
     }
     
     public static Context STATIC_REF = null;
+    
+    private void setupAds()  
+    {  
+    	adView = new AdView(this);
+    	adView.setAdUnitId("ca-app-pub-9720017543368967/7093125935");
+    	adView.setAdSize(AdSize.BANNER);
+    	LinearLayout layout = new LinearLayout(this);  
+        layout.setOrientation(LinearLayout.HORIZONTAL);  
+        LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+        //lp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        //layout.setGravity(Gravity.BOTTOM);
+        addContentView(layout, lp); 
+        
+        RelativeLayout rl = new RelativeLayout(this);
+        LayoutParams adlp = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+        adlp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        rl.addView(adView,adlp);
+        layout.addView(rl);
+        adView.loadAd(new AdRequest.Builder().build());  
+    }
+    
+    @Override
+    public void onPause() {
+      adView.pause();
+      super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+      super.onResume();
+      adView.resume();
+    }
+
+    @Override
+    public void onDestroy() {
+      adView.destroy();
+      super.onDestroy();
+    }
+
 }

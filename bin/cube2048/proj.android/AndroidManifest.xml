@@ -4,7 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="9" />
+    <uses-sdk android:minSdkVersion="9"/>
     <uses-feature android:glEsVersion="0x00020000" />
 
     <supports-screens android:largeScreens="true"
@@ -31,7 +31,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
+		<activity android:name="com.google.android.gms.ads.AdActivity"
+             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+                 
+        <meta-data android:value="pub-9720017543368967" android:name="ADMOB_PUBLISHER_ID" /> 
+ 		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+ 		
         <meta-data android:value="53ae92f256240b128d0d2ce6" android:name="UMENG_APPKEY"/>
 		<meta-data android:value="Official" android:name="UMENG_CHANNEL"/>
     </application>
