@@ -118,13 +118,19 @@ function MainScene:onEnter()
             self.touchcount = 0  --触摸点的次数 
         elseif event.name == "moved" then
             --正在移动中 不处理事件
-            if self.moving == true or self.touchcount ~=3 then
+            if self.moving == true then
                 -- print("正在移动中")
-                if self.touchcount < 3 then
-                    self.touchcount = self.touchcount + 1
-                end
                 return --返回
             end
+
+            --判断长度
+            local lx = event.x - self.bx
+            local ly = event.y - self.by
+            local len = math.sqrt(math.abs(lx)*math.abs(lx)+math.abs(ly)*math.abs(ly))
+            if len<30 then
+                return
+            end
+
             --正在移动
             self.moving = true
 

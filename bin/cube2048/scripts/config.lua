@@ -40,3 +40,7 @@ CUBE_COL_PADDING = 20
 CUBE_WIDTH	=	110
 CUBE_HEIGHT	=	110
 
+--渠道ＩＤ
+CHANNELID_AND = "andofficial"
+CHANNELID_IOS = "andofficial"
+

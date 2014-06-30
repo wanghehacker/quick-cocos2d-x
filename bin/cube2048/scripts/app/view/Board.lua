@@ -35,7 +35,7 @@ function Board:start()
     self.movecount = 0
 	--self:addCube(2048, 1, 1)
 	--self:addCube(1024, 1, 2)
-	math.randomseed(os.time())
+	math.randomseed(tostring(os.time()):reverse():sub(1, 6))  
 	local rand = math.random(2)
 	local value = 2
 	if rand == 1 then
@@ -71,7 +71,7 @@ end
 
 function Board:addOneCube()
 
-	math.randomseed(os.time())
+	
 	local rand = math.random(2)
 	local value = 2
 	if rand == 1 then
@@ -100,6 +100,7 @@ function Board:getNewPosition()
 	local x = 0
 	local y = 0
 	local comp = true
+
 	--如果格子不满的话 则获取位置
 	--格子满了  就返回 0 0 
 	if #self.cubes < 16 then

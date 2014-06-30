@@ -29,10 +29,10 @@ function MyApp:run()
      -- 改为真实的应用ID，第二参数为渠道号(可选)
     if device.platform == "android" then
     	cc.analytics:doCommand{command = "startWithAppkey",
-    			args = {appKey = "53ae92f256240b128d0d2ce6",channelId = "andofficial"}}
-    elseif device.platform == "ios" then
+    			args = {appKey = "53ae92f256240b128d0d2ce6",channelId = CHANNELID_AND}}
+    elseif device.platform == "ios" then+
     	cc.analytics:doCommand{command = "startWithAppkey",
-    			args = {appKey = "53ae92f256240b128d0d2ce6",channelId = "iosofficial"}}
+    			args = {appKey = "53ae92f256240b128d0d2ce6",channelId = CHANNELID_IOS}}
     end
 
     CCFileUtils:sharedFileUtils():addSearchPath("res/")
