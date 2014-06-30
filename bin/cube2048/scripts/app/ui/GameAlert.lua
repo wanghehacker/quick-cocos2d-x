@@ -2,6 +2,8 @@ local GameAlert = class(GameAlert, function()
 	return display.newLayer()
 	end)
 
+--全局存储
+
 function GameAlert:ctor()
 	self.bg = display.newScale9Sprite("#alertbg.png",10,10,cc.size(10,10))
 	self.bg:setContentSize(cc.size(660,620))

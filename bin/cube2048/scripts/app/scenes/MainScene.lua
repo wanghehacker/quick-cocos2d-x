@@ -35,7 +35,7 @@ function MainScene:ctor()
     self.best = 65535
 end
 
---游戏重新开始
+--游戏重新开始2
 function MainScene:reStart()
     self:showRestartAlert("Restart Game?",{
             {
@@ -46,6 +46,7 @@ function MainScene:reStart()
                 name = "Cancel",
                 handle = handler(self,function() 
                     self.alert:removeFromParent()
+                    self.alert=nil
                     self.cube:setTouchEnabled(true)
                     end)
             },
@@ -82,6 +83,7 @@ function MainScene:onEnter()
     self.cube:setTouchEnabled(true)
     self.board:setKeypadEnabled(true)
     self.board:addNodeEventListener(cc.KEYPAD_EVENT,function(event)
+        dump(event)
         if event.key == "back" then
             --返回按钮
             self:showRestartAlert("Exit Game?",{
@@ -97,6 +99,7 @@ function MainScene:onEnter()
                 name = "Cancel",
                 handle = handler(self,function() 
                     self.alert:removeFromParent()
+                    self.alert = nil
                     self.cube:setTouchEnabled(true)
                     end)
             },
@@ -202,6 +205,10 @@ end
 
 --显示Alert
 function MainScene:showRestartAlert(content,buttons)
+    if self.alert ~= nil then
+        self.alert:removeFromParent()
+        self.alert = nil
+    end
     self.alert = GameAlert.new()
     self.alert:show(content, buttons)
     self.alert:addTo(self)
@@ -212,6 +219,7 @@ function MainScene:showRestartAlert(content,buttons)
 end
 
 function MainScene:onExit()
+    print("exit1111")
     self.cube:removeNodeEventListenersByEvent(cc.NODE_TOUCH_EVENT)
     self.board:removeNodeEventListenersByEvent(cc.KEYPAD_EVENT)
 end
