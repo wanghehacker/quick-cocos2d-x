@@ -20,8 +20,6 @@ end
 --随机选2 或4 ，如果是2则两个都是2，如果是4则两个都是4
 function Board:start()
 
-	self:setKeypadEnabled(value)
-
 	if self.cubes ~= nil then 
 		for k,v in pairs(self.cubes) do
 			v:removeFromParent()
@@ -309,8 +307,10 @@ function Board:slip(direction,onComplete)
 		end
 	end
 	--计算结束
-	if self.movecount == 0 and #self.cubes ==16 then
-		self:dispatchEvent({name="GAME_FAIL"})
+	if self.movecount == 0 and #self.cubes == 16 then
+		if self:checkIsFail()==false then
+			self:dispatchEvent({name="GAME_FAIL"})
+		end
 	end
 end
 
@@ -359,4 +359,28 @@ function Board:moveComplete()
 		self.board.complete()
 	end
 end
+
+--判断是否失败了
+--false 失败
+--true  未失败
+function Board:checkIsFail()
+	if #self.cubes ~= 16 then
+		return true
+	end
+
+	for i=1,3 do
+		for j=1,4 do
+			if self.cubepos[i][j].value == self.cubepos[i+1][j].value then
+				return true
+			end
+
+			if self.cubepos[j][i].value == self.cubepos[j][i+1].value then 
+				return true
+			end
+		end
+	end
+
+	return false
+end
+
 return Board

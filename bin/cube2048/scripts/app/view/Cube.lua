@@ -31,7 +31,7 @@ function Cube:ctor(value)
 		local label = ui.newTTFLabel({
 			text = tostring(value),
 			font = "myxihei.ttf",
-			size = 52,
+			size = 44,
 			color = ccc3(255, 255, 255),
 			align = ui.TEXT_ALIGN_CENTER,
 			valign = ui.TEXT_ALIGN_CENTER,
@@ -58,7 +58,7 @@ function Cube:setValue(value,onComplete)
 		local label = ui.newTTFLabel({
 			text = tostring(value),
 			font = "myxihei.ttf",
-			size = 52,
+			size = 44,
 			color = ccc3(255, 255, 255),
 			align = ui.TEXT_ALIGN_CENTER,
 			valign = ui.TEXT_ALIGN_CENTER,
