@@ -36,14 +36,14 @@ function Board:start()
 	--self:addCube(2048, 1, 1)
 	--self:addCube(1024, 1, 2)
 	math.randomseed(tostring(os.time()):reverse():sub(1, 6))  
-	local rand = math.random(2)
+	local rand = math.random(10)
 	local value = 2
-	if rand == 1 then
-		--随机两个2
-		value = 2
-	else
+	if rand == 10 then
 		--随机两个4
 		value = 4
+	else
+		--随机两个2
+		value = 2
 	end
 	--随机出坐标
 	local posx = nil
@@ -71,15 +71,15 @@ end
 
 function Board:addOneCube()
 
-	
-	local rand = math.random(2)
+	--math.randomseed(tostring(os.time()):reverse():sub(1, 6)+1) 
+	local rand = math.random(10)
 	local value = 2
-	if rand == 1 then
-		--随机两个2
-		value = 2
-	else
+	if rand == 10 then
 		--随机两个4
 		value = 4
+	else
+		--随机两个2
+		value = 2
 	end
 
 	local posx = nil
@@ -105,7 +105,9 @@ function Board:getNewPosition()
 	--格子满了  就返回 0 0 
 	if #self.cubes < 16 then
 		while true do
+			--math.randomseed(tostring(os.time()):reverse():sub(1, 6)+2) 
 			x = math.random(4)
+			--math.randomseed(tostring(os.time()):reverse():sub(1, 6)+3) 
 			y = math.random(4)
 			for i,v in pairs(self.cubes) do
 				if v.x == x and v.y == y then
@@ -236,6 +238,7 @@ function Board:slip(direction,onComplete)
 			--dump(self.cubepos)
 			if cube ~= 0 then
 				cube.moveType = 0
+				print("count"..cube:retainCount())
 				--循环出结果
 				for k = j,loopStart,-step do
 					if direction == 3 or direction == 1 then

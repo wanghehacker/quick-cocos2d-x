@@ -30,7 +30,7 @@ function MyApp:run()
     if device.platform == "android" then
     	cc.analytics:doCommand{command = "startWithAppkey",
     			args = {appKey = "53ae92f256240b128d0d2ce6",channelId = CHANNELID_AND}}
-    elseif device.platform == "ios" then+
+    elseif device.platform == "ios" then
     	cc.analytics:doCommand{command = "startWithAppkey",
     			args = {appKey = "53ae92f256240b128d0d2ce6",channelId = CHANNELID_IOS}}
     end
