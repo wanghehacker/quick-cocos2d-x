@@ -63,6 +63,11 @@ TypeData[11] = {
 }
 
 TypeData[12] = {
+	value = 4096,
+	bg = "cube12.png"
+}
+
+TypeData[13] = {
 	value = 8192,
 	bg = "cube12.png"
 }
